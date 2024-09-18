@@ -1,0 +1,42 @@
+<!--quotes/templates/quotes/quote.html-->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="/static/quotes.css">
+        <title>Quote | Quote</title>
+    </head>
+    <body>
+        <header>
+            <h1>Random Quote</h1>
+        </header>
+        <nav>
+            <ul>
+                <li>
+                    <a href="http://127.0.0.1:8000/quotes">Base</a>
+                </li>
+                <li>
+                    <a href="http://127.0.0.1:8000/quotes/quote">Random Quote</a>
+                </li>
+                <li>
+                    <a href="http://127.0.0.1:8000/quotes/show_all">Show All</a>
+                </li>
+                <li>
+                    <a href="http://127.0.0.1:8000/quotes/about">About</a>
+                </li>
+            </ul>
+        </nav>
+        <main>
+            <table>
+                <tr>
+                    <img src="{{image}}" alt="Picture of Camus">
+                </tr>
+                <tr>
+                    <p>{{quote}}</p>
+                </tr>
+            </table>
+        </main>
+    </body>
+
+</html>
