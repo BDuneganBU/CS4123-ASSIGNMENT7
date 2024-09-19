@@ -5,9 +5,6 @@
         "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
     }],
     "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "cs412/wsgi.py"
-        }
+
     ]
 }
