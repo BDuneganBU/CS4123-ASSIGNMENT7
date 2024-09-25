@@ -37,8 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'pages', #Default Pages page
     'hw', #HelloWorld app
     'quotes', #Quote of the Day app
+    'restaurant', #Restaurant app
+    'formdata', #Example formdata app
 ]
 
 MIDDLEWARE = [

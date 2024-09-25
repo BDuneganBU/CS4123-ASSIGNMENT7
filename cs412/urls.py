@@ -21,10 +21,11 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('pages.urls')),
     path('hw/', include('hw.urls')),  ## Creates URL hw/, and associates it with other URLS in hw.urls
     path('quotes/', include('quotes.urls')), ## Creates URL quotes/, and associates it with other URLS in quotes.urls
-    path('', include('quotes.urls')),
-    
+    path('restaurant/', include('restaurant.urls')),
+    path('formdata/', include('formdata.urls')),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
