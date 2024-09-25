@@ -1,3 +1,7 @@
+## restaurant/views.py
+## description: View patterns for the restaurant app
+## Always write a header comment
+
 from django.shortcuts import render, redirect
 from django.http import HttpRequest, HttpResponse
 import datetime

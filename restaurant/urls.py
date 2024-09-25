@@ -1,5 +1,5 @@
-## quotes/urls.py
-## description: URL patterns for the quotes app
+## restaurant/urls.py
+## description: URL patterns for the restaurant app
 ## Always write a header comment
 from django.urls import path
 
