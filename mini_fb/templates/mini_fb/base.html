@@ -1,0 +1,23 @@
+<!-- mini_fb/templates/mini_fb/base.html -->
+{% load static %}
+<html>
+    <head>
+        <title>LOTR Mini Facebook!</title>
+        <link rel="stylesheet" href="{% static 'mini_fb.css' %}">
+    </head>
+    <body>
+        <header>
+            <h1>LOTR Mini Facebook</h1>
+        </header>
+        <nav>
+            <a href="../../..">Home</a>
+        </nav>
+        <main>
+            {% block content %}
+            {% endblock %}  
+        </main>  
+        <footer>
+            <p>all characters are from the film: Lord of the Rings</p>
+        </footer>
+    </body>
+</html>

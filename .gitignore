@@ -6,6 +6,7 @@ __pycache__/
 # Virtual environment
 venv/
 env/
+myenv/
 .venv/
 .env/
 
@@ -21,10 +22,6 @@ env/
 db.sqlite3
 db.sqlite3-journal
 
-# Static and media files
-staticfiles/
-static/
-media/
 
 # Django cache files
 *.log

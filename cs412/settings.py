@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'quotes', #Quote of the Day app
     'restaurant', #Restaurant app
     'formdata', #Example formdata app
+    'blog', #Example blog app
+    'mini_fb', #Assignment 5 app
 ]
 
 MIDDLEWARE = [
