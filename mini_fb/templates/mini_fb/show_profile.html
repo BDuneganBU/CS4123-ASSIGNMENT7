@@ -37,8 +37,10 @@
     </table>
 </div>
 <div>
-    <h2>Status Messages for {{profile.firstName}} {{profile.lastName}}:</h2>
+    <a href="{% url 'create_status' profile.pk %}">Add Status Message!</a>
+    <h2> Status Messages for {{profile.firstName}} {{profile.lastName}}:</h2>
     <table>
+        <!--Display a list of all StatusMessages for this profile-->
         {% for m in profile.get_statusMessages %}
             <tr>
                 <td style="border: none">

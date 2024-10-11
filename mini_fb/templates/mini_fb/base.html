@@ -10,7 +10,9 @@
             <h1>LOTR Mini Facebook</h1>
         </header>
         <nav>
-            <a href="../../..">Home</a>
+            <a href="../../..">Home</a> <br>
+            <a href="{% url 'show_all' %}">Profiles</a> <br>
+            <a href="{% url 'createProfile' %}">Create a Profile</a>
         </nav>
         <main>
             {% block content %}

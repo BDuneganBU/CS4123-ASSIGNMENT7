@@ -12,6 +12,7 @@
         {% for p in profiles %}
         <tr>
             <td>
+                <!--goes to the specific page for the displayed profile-->
                 <a href="{% url 'show_profile' p.pk %}">{{p.firstName}} {{p.lastName}}</a>
             </td>
             <td>
