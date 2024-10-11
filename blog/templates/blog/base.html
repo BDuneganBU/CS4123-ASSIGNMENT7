@@ -1,4 +1,3 @@
-## Create template:
 <!-- templates/base.html -->
 <!-- blog/templates/blog/base.html -->
 {% load static %}
@@ -10,6 +9,15 @@
     <body>
         <header>
             <h1>Blog</h1>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'show_all_articles' %}">Show All</a></li>
+                    <li><a href="{% url 'random' %}">Random</a></li>
+                    <li><a href="/blog/article/1">Article 1</a></li>
+                    <li><a href="/blog/article/2">Article 2</a></li>
+                    <li><a href="/blog/article/3">Article 3</a></li>
+                </ul>
+            </nav>
         </header>
     
     {% block content %}

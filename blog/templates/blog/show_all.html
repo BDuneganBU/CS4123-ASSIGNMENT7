@@ -13,7 +13,8 @@
         {% endif %}
         
         <div>
-        <h2>{{a.title}}</h2>
+        <!--for the URL article, we add parameter for a's primary key (a.pk)-->
+        <h2><a href="{% url 'article' a.pk %}">{{a.title}}</a></h2>
         <strong>by {{a.author}} at {{a.published}}</strong>
         <p>
         {{a.text}}

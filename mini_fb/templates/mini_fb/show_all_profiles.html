@@ -12,7 +12,7 @@
         {% for p in profiles %}
         <tr>
             <td>
-                {{p.firstName}} {{p.lastName}}
+                <a href="{% url 'show_profile' p.pk %}">{{p.firstName}} {{p.lastName}}</a>
             </td>
             <td>
                 {% if p.profileImageURL %}
