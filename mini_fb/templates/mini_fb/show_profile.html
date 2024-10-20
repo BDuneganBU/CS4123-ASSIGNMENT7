@@ -37,17 +37,29 @@
     </table>
 </div>
 <div>
+    <a href="{% url 'update_profile' profile.pk %}">Update Profile!</a>
     <a href="{% url 'create_status' profile.pk %}">Add Status Message!</a>
     <h2> Status Messages for {{profile.firstName}} {{profile.lastName}}:</h2>
     <table>
         <!--Display a list of all StatusMessages for this profile-->
         {% for m in profile.get_statusMessages %}
             <tr>
+                <td style="border: none"><a href="{% url 'delete_status' m.pk %}">Delete</a></td>
+                <td style="border: none"><a href="{% url 'update_status' m.pk %}">Update</a></td>
                 <td style="border: none">
                     {{m.timestamp}}
                 </td>
                 <td style="border: none">
                     {{m.message}}
+                </td>
+                <td style="border: none"> 
+                    {% for img in m.get_images %}
+                        {% if img.image_file %}
+                            <img src='{{img.image_file.url}}' alt='{{img.image_file.url}}'>
+                        {% else %}
+                            <p>No image available</p>
+                        {% endif %}
+                    {% endfor %}
                 </td>
             </tr>
         {% endfor %}

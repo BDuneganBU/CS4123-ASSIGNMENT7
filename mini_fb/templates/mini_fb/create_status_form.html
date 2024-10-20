@@ -5,7 +5,7 @@
 
 <h2>Add a Status Message</h2>
 
-<form method = 'POST'>
+<form method = 'POST' enctype="multipart/form-data">
 {% csrf_token %}
     <table>
         <!--Follows the same form implementation as lecture-->
@@ -17,6 +17,9 @@
         {% endfor %}
         <tr>
             <td></td>
+            <td>
+                <input type="file" name = "files" multiple />
+            </td>
             <td>
                 <input type='submit' name = 'Add Message!' value= 'Add Message!'>
              </td>

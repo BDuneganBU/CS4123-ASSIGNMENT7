@@ -9,7 +9,7 @@ from django.http import HttpResponse
 from .models import *
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView
-from .forms import CreateProfileForm, CreateStatusMessageForm
+from .forms import *
 from django.urls import reverse
 from typing import Any
 
@@ -64,9 +64,84 @@ class CreateStatusMessageView(CreateView):
         profile = Profile.objects.get(pk=self.kwargs['pk'])
         #Attach Article to the instance of the comment set to its PK
         form.instance.profile = profile
+
+
+        # save the status message to database
+        sm = form.save()
+        # read the file from the form:
+        files = self.request.FILES.getlist('files')
+        for f in files:
+            image = Image()
+            image.image_file = f
+            image.status_message = sm
+            image.save()
+
+
         #Delegate work to super
         return super().form_valid(form)
 
     def get_success_url(self) -> str:
         '''Return the URL to redirect to after successfully submitting form.'''
         return reverse('show_profile', kwargs={'pk': self.kwargs['pk']})
+
+from django.views.generic.edit import UpdateView
+class UpdateProfileView(UpdateView):
+    '''A view to update an Article and save it to the database.'''
+    form_class = UpdateProfileForm
+    template_name = "mini_fb/update_profile_form.html"
+    model = Profile ## add this model and the QuerySet will automatically find instance by PK
+    
+    def form_valid(self, form):
+        '''
+        Handle the form submission to create a new Profile object.
+        '''
+        print(f'UpdateArticleView: form.cleaned_data={form.cleaned_data}')
+        return super().form_valid(form)
+    
+    def get_success_url(self) -> str:
+        '''Return the URL to redirect to after successfully submitting form.'''
+        return reverse('show_profile', kwargs={'pk': self.kwargs['pk']})
+
+class UpdateStatusMessageView(UpdateView):
+    '''A view to update an StatusMessage and save it to the database.'''
+    form_class = UpdateStatusMessageForm
+    template_name = "mini_fb/update_status_form.html"
+    model = StatusMessage ## add this model and the QuerySet will automatically find instance by PK
+    
+    def form_valid(self, form):
+        '''
+        Handle the form submission to create a new StatusMessage object.
+        '''
+        print(f'UpdateArticleView: form.cleaned_data={form.cleaned_data}')
+        return super().form_valid(form)
+    
+    def get_success_url(self):
+        '''Return a the URL to which we should be directed after the delete.'''
+        # get the pk for this status
+        pk = self.kwargs.get('pk')
+        message = StatusMessage.objects.filter(pk=pk).first() # get one object from QuerySet
+        
+        # find the article to which this Comment is related by FK
+        message = message.profile
+        
+        # reverse to show the article page
+        return reverse('show_profile', kwargs={'pk':message.pk})
+
+from django.views.generic.edit import DeleteView
+class DeleteStatusMessageView(DeleteView):
+    '''A view to delete a status message and remove it from the database.'''
+    context_object_name = 'status_message'
+    template_name = "mini_fb/delete_status_form.html"
+    model = StatusMessage
+
+    def get_success_url(self):
+        '''Return a the URL to which we should be directed after the delete.'''
+        # get the pk for this status
+        pk = self.kwargs.get('pk')
+        message = StatusMessage.objects.filter(pk=pk).first() # get one object from QuerySet
+        
+        # find the article to which this Comment is related by FK
+        message = message.profile
+        
+        # reverse to show the article page
+        return reverse('show_profile', kwargs={'pk':message.pk})

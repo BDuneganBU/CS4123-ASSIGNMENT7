@@ -44,3 +44,15 @@ class StatusMessage(models.Model):
     def __str__(self):
         '''Return a string representation of this StatusMessage object.'''
         return f'{self.message}'
+    
+    def get_images(self):
+        '''Return all of the Images about this StatusMessage.'''
+        return Image.objects.filter(status_message=self)
+
+    
+class Image(models.Model):
+    '''Encapsulate the idea of an image file'''
+    #each Image has a ForeignKey of type Profile creating a many-to-one relationship
+    status_message = models.ForeignKey("StatusMessage", on_delete=models.CASCADE)
+    image_file = models.ImageField(blank=True)
+    timestamp = models.DateTimeField(auto_now=True)

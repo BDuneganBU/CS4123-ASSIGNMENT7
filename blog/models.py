@@ -4,6 +4,7 @@
 # Define the data objects for our application
 #
 from django.db import models
+from django.urls import reverse
 
 #Each model is a class
 class Article(models.Model): #class MUST inheirit 
@@ -13,7 +14,8 @@ class Article(models.Model): #class MUST inheirit
     author = models.TextField(blank=False) #blank=False means the field is required to be filled for each Article Model
     text = models.TextField(blank=False)
     published = models.DateTimeField(auto_now=True) #auto_now=True sets the time to now upon Model instantiation
-    image_url = models.URLField(blank=True) ## new
+    #image_url = models.URLField(blank=True) ## new
+    image_file = models.ImageField(blank=True) # an actual image
     
     #Default method so name MUST match (Admin can display this rather than the unique ID)
     def __str__(self):
@@ -24,6 +26,10 @@ class Article(models.Model): #class MUST inheirit
         '''Return all of the comments about this article.'''
         comments = Comment.objects.filter(article=self)
         return comments
+    
+    def get_absolute_url(self):
+        '''Return the URL to display this Article.'''
+        return reverse('article', kwargs={'pk':self.pk})
 
 class Comment(models.Model):
     '''Encapsulate the idea of a Comment on an Article.'''
